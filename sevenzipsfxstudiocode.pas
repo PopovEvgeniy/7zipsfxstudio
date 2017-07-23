@@ -4,7 +4,7 @@ unit sevenzipsfxstudiocode;
 
 interface
 
-uses Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ExtCtrls, StdCtrls;
+uses Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazUTF8;
 
 type
 
@@ -73,12 +73,10 @@ convert_file_name:=target;
 end;
 
 function execute_program(executable:string;argument:string):Integer;
-var parametrs:string;
 var code:Integer;
 begin
-parametrs:=UTF8ToSys(argument);
 try
-code:=ExecuteProcess(executable,parametrs,[]);
+code:=ExecuteProcess(UTF8ToWinCP(executable),UTF8ToWinCP(argument),[]);
 except
 On EOSError do code:=-1;
 end;
@@ -99,8 +97,7 @@ begin
 target:=ExtractFileNameWithoutExt(archive)+'.exe';
 output:='copy /b '+convert_file_name(sfx)+'+'+convert_file_name(configuration)+'+'+convert_file_name(archive)+' '+convert_file_name(target);
 execute_command(output);
-output:=UTF8ToSys(target);
-if FileExists(output)=True then
+if FileExists(target)=True then
 begin
 ShowMessage('A self-extraction archive successfully created');
 end
@@ -114,7 +111,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.1.4';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.1.6';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;

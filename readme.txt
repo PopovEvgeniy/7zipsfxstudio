@@ -1,17 +1,17 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.1.4
+                                  Version 2.1.6
 
                          Created by Popov Evgeniy Alekseyevich
 
 System requirement
 
-Windows 98 or higher
+Windows 2000 or higher
 Wine for run under Unix like operation systems
 
 Program description
 
-This program is created for help you convert a 7-zip archive to self-extracting archive.
+This program let you convert a 7-zip archive to self-extracting archive.
 
 License
 
@@ -24,7 +24,7 @@ You can send me a letter to tuzik87@inbox.ru
 About program modification
 
 Source code is included in source.zip archive.
-It can be compiled under Lazarus 0.9.30 or higher.
+It can be compiled under Lazarus 1.6.4 or higher.
 
 Change log
 
@@ -32,3 +32,5 @@ Change log
 1.1 - First public release
 1.2 - 2.1.3 - Stable branch
 2.1.4 - Totally program rewrote
+2.1.5 - Small changes. Windows 9x support was dropped.
+2.1.6 - Small bug was fixed.
