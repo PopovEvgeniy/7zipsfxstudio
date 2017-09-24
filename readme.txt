@@ -1,6 +1,6 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.1.6
+                                  Version 2.1.6.0.1
 
                          Created by Popov Evgeniy Alekseyevich
 
@@ -15,7 +15,7 @@ This program let you convert a 7-zip archive to self-extracting archive.
 
 License
 
-This program distrubuted under GNU GENERAL PUBLIC LICENSE.
+This program distributed under GNU GENERAL PUBLIC LICENSE.
 
 Contact
 
@@ -34,3 +34,4 @@ Change log
 2.1.4 - Totally program rewrote
 2.1.5 - Small changes. Windows 9x support was dropped.
 2.1.6 - Small bug was fixed.
+2.1.6.0.1 – Documentation was updated.
