@@ -1,13 +1,13 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.1.6.0.1
+                                  Version 2.1.7
 
-                         Created by Popov Evgeniy Alekseyevich
+                         This software made by Popov Evgeniy Alekseyevich
 
 System requirement
 
-Windows 2000 or higher
-Wine for run under Unix like operation systems
+Windows 2000 or higher for 32 bit system
+Windows Vista or higher for 64 bit system
 
 Program description
 
@@ -24,7 +24,7 @@ You can send me a letter to tuzik87@inbox.ru
 About program modification
 
 Source code is included in source.zip archive.
-It can be compiled under Lazarus 1.6.4 or higher.
+It can be compiled under Lazarus 1.8.4 or higher.
 
 Change log
 
@@ -35,3 +35,4 @@ Change log
 2.1.5 - Small changes. Windows 9x support was dropped.
 2.1.6 - Small bug was fixed.
 2.1.6.0.1 – Documentation was updated.
+2.1.7 - Small changes.
