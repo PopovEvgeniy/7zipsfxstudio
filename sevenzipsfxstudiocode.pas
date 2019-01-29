@@ -34,7 +34,6 @@ type
   end; 
 
   var Form1: TForm1;
-  function check_input(input:string):Boolean;
   function convert_file_name(source:string): string;
   function execute_program(executable:string;argument:string):Integer;
   procedure execute_command(var command:string);
@@ -49,17 +48,6 @@ type
   procedure setup();
 
 implementation
-
-function check_input(input:string):Boolean;
-var target:Boolean;
-begin
-target:=True;
-if input='' then
-begin
-target:=False;
-end;
-check_input:=target;
-end;
 
 function convert_file_name(source:string): string;
 var target:string;
@@ -111,7 +99,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.1.7';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.1.8';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -190,17 +178,17 @@ end;
 
 procedure TForm1.LabeledEdit1Change(Sender: TObject);
 begin
-Button4.Enabled:=check_input(LabeledEdit1.Text) and check_input(LabeledEdit2.Text) and check_input(LabeledEdit3.Text);
+Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.LabeledEdit2Change(Sender: TObject);
 begin
-Button4.Enabled:=check_input(LabeledEdit1.Text) and check_input(LabeledEdit2.Text) and check_input(LabeledEdit3.Text);
+Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.LabeledEdit3Change(Sender: TObject);
 begin
-Button4.Enabled:=check_input(LabeledEdit1.Text) and check_input(LabeledEdit2.Text) and check_input(LabeledEdit3.Text);
+Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
