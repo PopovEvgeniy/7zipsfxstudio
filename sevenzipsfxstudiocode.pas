@@ -4,7 +4,7 @@ unit sevenzipsfxstudiocode;
 
 interface
 
-uses Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazUTF8;
+uses Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazUTF8, LazFileUtils;
 
 type
 
@@ -35,8 +35,7 @@ type
 
   var Form1: TForm1;
   function convert_file_name(source:string): string;
-  function execute_program(executable:string;argument:string):Integer;
-  procedure execute_command(var command:string);
+  procedure execute_command(command:string);
   procedure create_sfx(sfx:string;configuration:string;archive:string);
   procedure window_setup();
   procedure set_module();
@@ -60,23 +59,12 @@ end;
 convert_file_name:=target;
 end;
 
-function execute_program(executable:string;argument:string):Integer;
-var code:Integer;
-begin
-try
-code:=ExecuteProcess(UTF8ToWinCP(executable),UTF8ToWinCP(argument),[]);
-except
-On EOSError do code:=-1;
-end;
-execute_program:=code;
-end;
-
-procedure execute_command(var command:string);
+procedure execute_command(command:string);
 var shell,arguments:string;
 begin
 shell:=GetEnvironmentVariable('COMSPEC');
 arguments:='/c '+command;
-execute_program(shell,arguments);
+if shell<>'' then ExecuteProcess(shell,UTF8ToWinCP(arguments),[]);
 end;
 
 procedure create_sfx(sfx:string;configuration:string;archive:string);
@@ -99,7 +87,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.1.8';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.2';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;

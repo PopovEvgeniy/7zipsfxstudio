@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="10"/>
+    <Version Value="11"/>
     <PathDelim Value="\"/>
     <General>
       <MainUnit Value="0"/>
@@ -50,13 +50,12 @@
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
-      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
-      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
     </PublishOptions>
     <RunParams>
-      <local>
-        <FormatVersion Value="1"/>
-      </local>
+      <FormatVersion Value="2"/>
+      <Modes Count="1">
+        <Mode0 Name="default"/>
+      </Modes>
     </RunParams>
     <RequiredPackages Count="1">
       <Item1>
@@ -76,14 +75,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="161"/>
-        <CursorPos X="98" Y="191"/>
+        <TopLine Value="79"/>
+        <CursorPos X="38" Y="90"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
     </Units>
-    <JumpHistory Count="4" HistoryIndex="3">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="sevenzipsfxstudiocode.pas"/>
         <Caret Line="216" Column="13" TopLine="216"/>
@@ -100,6 +99,14 @@
         <Filename Value="sevenzipsfxstudiocode.pas"/>
         <Caret Line="171" Column="24" TopLine="166"/>
       </Position4>
+      <Position5>
+        <Filename Value="sevenzipsfxstudiocode.pas"/>
+        <Caret Line="84" TopLine="56"/>
+      </Position5>
+      <Position6>
+        <Filename Value="sevenzipsfxstudiocode.pas"/>
+        <Caret Line="223" Column="5"/>
+      </Position6>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
