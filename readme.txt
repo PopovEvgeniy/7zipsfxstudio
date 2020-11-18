@@ -1,6 +1,6 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.2
+                                  Version 2.2.1
 
                          This software made by Popov Evgeniy Alekseyevich
 
@@ -24,7 +24,7 @@ You can send me a letter to tuzik87@inbox.ru
 About program modification
 
 Source code is included in source.zip archive.
-It can be compiled under Lazarus 2.0 or higher.
+It can be compiled under Lazarus 2.0.10 or higher.
 
 Change log
 
@@ -37,3 +37,4 @@ Change log
 2.1.6.0.1 – Documentation was updated.
 2.1.7 - 2.1.9 - Small changes.
 2.2 - Source code was adapted to new version of Lazarus.
+2.2.1 - Small changes.

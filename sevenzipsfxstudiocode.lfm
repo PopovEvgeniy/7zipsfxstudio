@@ -7,13 +7,13 @@ object Form1: TForm1
   ClientHeight = 214
   ClientWidth = 430
   OnCreate = FormCreate
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.10.0'
   object LabeledEdit1: TLabeledEdit
     Left = 200
-    Height = 21
+    Height = 23
     Top = 24
     Width = 120
-    EditLabel.Height = 13
+    EditLabel.Height = 15
     EditLabel.Width = 120
     EditLabel.Caption = 'Self-extracting module'
     EditLabel.ParentColor = False
@@ -23,10 +23,10 @@ object Form1: TForm1
   end
   object LabeledEdit2: TLabeledEdit
     Left = 200
-    Height = 21
+    Height = 23
     Top = 72
     Width = 120
-    EditLabel.Height = 13
+    EditLabel.Height = 15
     EditLabel.Width = 120
     EditLabel.Caption = 'Configuration file'
     EditLabel.ParentColor = False
@@ -36,10 +36,10 @@ object Form1: TForm1
   end
   object LabeledEdit3: TLabeledEdit
     Left = 200
-    Height = 21
+    Height = 23
     Top = 124
     Width = 120
-    EditLabel.Height = 13
+    EditLabel.Height = 15
     EditLabel.Width = 120
     EditLabel.Caption = 'Arcive'
     EditLabel.ParentColor = False
@@ -84,7 +84,7 @@ object Form1: TForm1
     TabOrder = 6
   end
   object OpenDialog1: TOpenDialog
-    left = 360
-    top = 168
+    Left = 360
+    Top = 168
   end
 end

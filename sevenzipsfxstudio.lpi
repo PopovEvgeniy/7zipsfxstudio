@@ -12,14 +12,14 @@
     <i18n>
       <EnableI18N LFM="False"/>
     </i18n>
-    <BuildModes Count="2" Active="Windows 64 bit">
+    <BuildModes Count="2" Active="Windows 32 bit">
       <Item1 Name="Windows 32 bit" Default="True"/>
       <Item2 Name="Windows 64 bit">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="64\sevenzipsfxstudio"/>
+            <Filename Value="sevenzipsfxstudio64"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -75,8 +75,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="79"/>
-        <CursorPos X="38" Y="90"/>
+        <TopLine Value="189"/>
+        <CursorPos X="2" Y="214"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -113,7 +113,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="32\sevenzipsfxstudio"/>
+      <Filename Value="sevenzipsfxstudio"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

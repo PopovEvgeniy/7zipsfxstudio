@@ -4,7 +4,7 @@ unit sevenzipsfxstudiocode;
 
 interface
 
-uses Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazUTF8, LazFileUtils;
+uses Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazFileUtils;
 
 type
 
@@ -51,43 +51,43 @@ implementation
 function convert_file_name(source:string): string;
 var target:string;
 begin
-target:=source;
-if Pos(' ',source)>0 then
-begin
-target:='"'+source+'"';
-end;
-convert_file_name:=target;
+ target:=source;
+ if Pos(' ',source)>0 then
+ begin
+  target:='"'+source+'"';
+ end;
+ convert_file_name:=target;
 end;
 
 procedure execute_command(command:string);
 var shell,arguments:string;
 begin
-shell:=GetEnvironmentVariable('COMSPEC');
-arguments:='/c '+command;
-if shell<>'' then ExecuteProcess(shell,UTF8ToWinCP(arguments),[]);
+ shell:=GetEnvironmentVariable('COMSPEC');
+ arguments:='/c '+command;
+ if shell<>'' then ExecuteProcess(shell,arguments,[]);
 end;
 
 procedure create_sfx(sfx:string;configuration:string;archive:string);
 var output,target:string;
 begin
-target:=ExtractFileNameWithoutExt(archive)+'.exe';
-output:='copy /b '+convert_file_name(sfx)+'+'+convert_file_name(configuration)+'+'+convert_file_name(archive)+' '+convert_file_name(target);
-execute_command(output);
-if FileExists(target)=True then
-begin
-ShowMessage('A self-extraction archive successfully created');
-end
-else
-begin
-ShowMessage('A self-extraction archive creation failed');
-end;
+ target:=ExtractFileNameWithoutExt(archive)+'.exe';
+ output:='copy /b '+convert_file_name(sfx)+'+'+convert_file_name(configuration)+'+'+convert_file_name(archive)+' '+convert_file_name(target);
+ execute_command(output);
+ if FileExists(target)=True then
+ begin
+  ShowMessage('A self-extraction archive successfully created');
+ end
+ else
+ begin
+  ShowMessage('A self-extraction archive creation failed');
+ end;
 
 end;
 
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.2';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.2.1';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -95,123 +95,123 @@ end;
 
 procedure set_module();
 begin
-Form1.OpenDialog1.FileName:='*.sfx';
-Form1.OpenDialog1.DefaultExt:='*.sfx';
-Form1.OpenDialog1.Filter:='SFX module|*.sfx';
+ Form1.OpenDialog1.FileName:='*.sfx';
+ Form1.OpenDialog1.DefaultExt:='*.sfx';
+ Form1.OpenDialog1.Filter:='SFX module|*.sfx';
 end;
 
 procedure set_config();
 begin
-Form1.OpenDialog1.FileName:='*.txt';
-Form1.OpenDialog1.DefaultExt:='*.txt';
-Form1.OpenDialog1.Filter:='Configuration file|*.txt';
+ Form1.OpenDialog1.FileName:='*.txt';
+ Form1.OpenDialog1.DefaultExt:='*.txt';
+ Form1.OpenDialog1.Filter:='Configuration file|*.txt';
 end;
 
 procedure set_archive();
 begin
-Form1.OpenDialog1.FileName:='*.7z';
-Form1.OpenDialog1.DefaultExt:='*.7z';
-Form1.OpenDialog1.Filter:='7-ZIP archive|*.7z';
+ Form1.OpenDialog1.FileName:='*.7z';
+ Form1.OpenDialog1.DefaultExt:='*.7z';
+ Form1.OpenDialog1.Filter:='7-ZIP archive|*.7z';
 end;
 
 procedure interface_setup();
 begin
-Form1.Button1.ShowHint:=False;
-Form1.Button2.ShowHint:=Form1.Button1.ShowHint;
-Form1.Button3.ShowHint:=Form1.Button1.ShowHint;
-Form1.Button4.ShowHint:=Form1.Button1.ShowHint;
-Form1.Button4.Enabled:=False;
-Form1.LabeledEdit1.Text:='';
-Form1.LabeledEdit2.Text:=Form1.LabeledEdit1.Text;
-Form1.LabeledEdit3.Text:=Form1.LabeledEdit1.Text;
-Form1.LabeledEdit1.LabelPosition:=lpLeft;
-Form1.LabeledEdit2.LabelPosition:=Form1.LabeledEdit1.LabelPosition;
-Form1.LabeledEdit3.LabelPosition:=Form1.LabeledEdit1.LabelPosition;
-Form1.LabeledEdit1.Enabled:=False;
-Form1.LabeledEdit2.Enabled:=Form1.LabeledEdit1.Enabled;
-Form1.LabeledEdit3.Enabled:=Form1.LabeledEdit1.Enabled;
+ Form1.Button1.ShowHint:=False;
+ Form1.Button2.ShowHint:=Form1.Button1.ShowHint;
+ Form1.Button3.ShowHint:=Form1.Button1.ShowHint;
+ Form1.Button4.ShowHint:=Form1.Button1.ShowHint;
+ Form1.Button4.Enabled:=False;
+ Form1.LabeledEdit1.Text:='';
+ Form1.LabeledEdit2.Text:=Form1.LabeledEdit1.Text;
+ Form1.LabeledEdit3.Text:=Form1.LabeledEdit1.Text;
+ Form1.LabeledEdit1.LabelPosition:=lpLeft;
+ Form1.LabeledEdit2.LabelPosition:=Form1.LabeledEdit1.LabelPosition;
+ Form1.LabeledEdit3.LabelPosition:=Form1.LabeledEdit1.LabelPosition;
+ Form1.LabeledEdit1.Enabled:=False;
+ Form1.LabeledEdit2.Enabled:=Form1.LabeledEdit1.Enabled;
+ Form1.LabeledEdit3.Enabled:=Form1.LabeledEdit1.Enabled;
 end;
 
 procedure common_setup();
 begin
-window_setup();
-set_module();
-interface_setup();
+ window_setup();
+ set_module();
+ interface_setup();
 end;
 
 procedure language_setup();
 begin
-Form1.Button1.Caption:='Open';
-Form1.Button2.Caption:='Open';
-Form1.Button3.Caption:='Open';
-Form1.Button4.Caption:='Create self-extracting archive';
-Form1.LabeledEdit1.EditLabel.Caption:='Self-extracting module';
-Form1.LabeledEdit2.EditLabel.Caption:='Configuration file';
-Form1.LabeledEdit3.EditLabel.Caption:='Archive';
-Form1.OpenDialog1.Title:='Open existing file';
+ Form1.Button1.Caption:='Open';
+ Form1.Button2.Caption:='Open';
+ Form1.Button3.Caption:='Open';
+ Form1.Button4.Caption:='Create self-extracting archive';
+ Form1.LabeledEdit1.EditLabel.Caption:='Self-extracting module';
+ Form1.LabeledEdit2.EditLabel.Caption:='Configuration file';
+ Form1.LabeledEdit3.EditLabel.Caption:='Archive';
+ Form1.OpenDialog1.Title:='Open existing file';
 end;
 
 procedure setup();
 begin
-common_setup();
-language_setup();
+ common_setup();
+ language_setup();
 end;
 
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-setup();
+ setup();
 end;
 
 procedure TForm1.LabeledEdit1Change(Sender: TObject);
 begin
-Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
+ Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.LabeledEdit2Change(Sender: TObject);
 begin
-Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
+ Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.LabeledEdit3Change(Sender: TObject);
 begin
-Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
+ Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-set_module();
-if Form1.OpenDialog1.Execute()=True then
-begin
-Form1.LabeledEdit1.Text:=Form1.OpenDialog1.FileName;
-end;
+ set_module();
+ if Form1.OpenDialog1.Execute()=True then
+ begin
+  Form1.LabeledEdit1.Text:=Form1.OpenDialog1.FileName;
+ end;
 
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-set_config();
-if Form1.OpenDialog1.Execute()=True then
-begin
-Form1.LabeledEdit2.Text:=Form1.OpenDialog1.FileName;
-end;
+ set_config();
+ if Form1.OpenDialog1.Execute()=True then
+ begin
+  Form1.LabeledEdit2.Text:=Form1.OpenDialog1.FileName;
+ end;
 
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 begin
-set_archive();
-if Form1.OpenDialog1.Execute()=True then
-begin
-Form1.LabeledEdit3.Text:=Form1.OpenDialog1.FileName;
-end;
+ set_archive();
+ if Form1.OpenDialog1.Execute()=True then
+ begin
+  Form1.LabeledEdit3.Text:=Form1.OpenDialog1.FileName;
+ end;
 
 end;
 
 procedure TForm1.Button4Click(Sender: TObject);
 begin
-create_sfx(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.LabeledEdit3.Text);
+ create_sfx(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.LabeledEdit3.Text);
 end;
 
 {$R *.lfm}
