@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <PathDelim Value="\"/>
     <General>
-      <MainUnit Value="0"/>
+      <Flags>
+        <CompatibilityMode Value="True"/>
+      </Flags>
       <Title Value="sevenzipsfxstudio"/>
       <ResourceType Value="res"/>
       <Icon Value="0"/>
@@ -12,7 +14,7 @@
     <i18n>
       <EnableI18N LFM="False"/>
     </i18n>
-    <BuildModes Count="2" Active="Windows 32 bit">
+    <BuildModes Count="2" Active="Windows 64 bit">
       <Item1 Name="Windows 32 bit" Default="True"/>
       <Item2 Name="Windows 64 bit">
         <CompilerOptions>
@@ -48,6 +50,7 @@
         </CompilerOptions>
       </Item2>
     </BuildModes>
+    <ManyBuildModesSelection Value="&quot;Windows 32 bit&quot;,&quot;Windows 64 bit&quot;"/>
     <PublishOptions>
       <Version Value="2"/>
     </PublishOptions>
@@ -75,14 +78,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="189"/>
-        <CursorPos X="2" Y="214"/>
+        <TopLine Value="98"/>
+        <CursorPos X="17" Y="105"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
     </Units>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <JumpHistory Count="7" HistoryIndex="6">
       <Position1>
         <Filename Value="sevenzipsfxstudiocode.pas"/>
         <Caret Line="216" Column="13" TopLine="216"/>
@@ -107,6 +110,10 @@
         <Filename Value="sevenzipsfxstudiocode.pas"/>
         <Caret Line="223" Column="5"/>
       </Position6>
+      <Position7>
+        <Filename Value="sevenzipsfxstudiocode.pas"/>
+        <Caret Line="147" Column="100" TopLine="25"/>
+      </Position7>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

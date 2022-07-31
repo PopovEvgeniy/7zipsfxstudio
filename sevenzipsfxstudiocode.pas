@@ -33,18 +33,7 @@ type
     { public declarations }
   end; 
 
-  var Form1: TForm1;
-  function convert_file_name(source:string): string;
-  procedure execute_command(command:string);
-  procedure create_sfx(sfx:string;configuration:string;archive:string);
-  procedure window_setup();
-  procedure set_module();
-  procedure set_config();
-  procedure set_archive();
-  procedure interface_setup();
-  procedure common_setup();
-  procedure language_setup();
-  procedure setup();
+var Form1: TForm1;
 
 implementation
 
@@ -87,31 +76,10 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.2.1';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.2.2';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
-end;
-
-procedure set_module();
-begin
- Form1.OpenDialog1.FileName:='*.sfx';
- Form1.OpenDialog1.DefaultExt:='*.sfx';
- Form1.OpenDialog1.Filter:='SFX module|*.sfx';
-end;
-
-procedure set_config();
-begin
- Form1.OpenDialog1.FileName:='*.txt';
- Form1.OpenDialog1.DefaultExt:='*.txt';
- Form1.OpenDialog1.Filter:='Configuration file|*.txt';
-end;
-
-procedure set_archive();
-begin
- Form1.OpenDialog1.FileName:='*.7z';
- Form1.OpenDialog1.DefaultExt:='*.7z';
- Form1.OpenDialog1.Filter:='7-ZIP archive|*.7z';
 end;
 
 procedure interface_setup();
@@ -135,7 +103,6 @@ end;
 procedure common_setup();
 begin
  window_setup();
- set_module();
  interface_setup();
 end;
 
@@ -166,22 +133,24 @@ end;
 
 procedure TForm1.LabeledEdit1Change(Sender: TObject);
 begin
- Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
+ Form1.Button4.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'') and (Form1.LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.LabeledEdit2Change(Sender: TObject);
 begin
- Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
+ Form1.Button4.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'') and (Form1.LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.LabeledEdit3Change(Sender: TObject);
 begin
- Button4.Enabled:=(LabeledEdit1.Text<>'') and (LabeledEdit2.Text<>'') and (LabeledEdit3.Text<>'');
+ Form1.Button4.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'') and (Form1.LabeledEdit3.Text<>'');
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
- set_module();
+ Form1.OpenDialog1.FileName:='*.sfx';
+ Form1.OpenDialog1.DefaultExt:='*.sfx';
+ Form1.OpenDialog1.Filter:='SFX module|*.sfx';
  if Form1.OpenDialog1.Execute()=True then
  begin
   Form1.LabeledEdit1.Text:=Form1.OpenDialog1.FileName;
@@ -191,7 +160,9 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
- set_config();
+ Form1.OpenDialog1.FileName:='*.txt';
+ Form1.OpenDialog1.DefaultExt:='*.txt';
+ Form1.OpenDialog1.Filter:='Configuration file|*.txt';
  if Form1.OpenDialog1.Execute()=True then
  begin
   Form1.LabeledEdit2.Text:=Form1.OpenDialog1.FileName;
@@ -201,7 +172,9 @@ end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 begin
- set_archive();
+ Form1.OpenDialog1.FileName:='*.7z';
+ Form1.OpenDialog1.DefaultExt:='*.7z';
+ Form1.OpenDialog1.Filter:='7-ZIP archive|*.7z';
  if Form1.OpenDialog1.Execute()=True then
  begin
   Form1.LabeledEdit3.Text:=Form1.OpenDialog1.FileName;
