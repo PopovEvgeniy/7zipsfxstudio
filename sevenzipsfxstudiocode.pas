@@ -76,7 +76,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.2.2';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.2.3';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -100,12 +100,6 @@ begin
  Form1.LabeledEdit3.Enabled:=Form1.LabeledEdit1.Enabled;
 end;
 
-procedure common_setup();
-begin
- window_setup();
- interface_setup();
-end;
-
 procedure language_setup();
 begin
  Form1.Button1.Caption:='Open';
@@ -120,7 +114,8 @@ end;
 
 procedure setup();
 begin
- common_setup();
+ window_setup();
+ interface_setup();
  language_setup();
 end;
 
