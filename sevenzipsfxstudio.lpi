@@ -69,7 +69,7 @@
       <Unit0>
         <Filename Value="sevenzipsfxstudio.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit0>
       <Unit1>
         <Filename Value="sevenzipsfxstudiocode.pas"/>
@@ -78,14 +78,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="67"/>
-        <CursorPos Y="102"/>
-        <UsageCount Value="21"/>
+        <CursorPos X="83" Y="7"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
     </Units>
-    <JumpHistory Count="7" HistoryIndex="6">
+    <JumpHistory Count="10" HistoryIndex="9">
       <Position1>
         <Filename Value="sevenzipsfxstudiocode.pas"/>
         <Caret Line="216" Column="13" TopLine="216"/>
@@ -114,6 +113,18 @@
         <Filename Value="sevenzipsfxstudiocode.pas"/>
         <Caret Line="147" Column="100" TopLine="25"/>
       </Position7>
+      <Position8>
+        <Filename Value="sevenzipsfxstudiocode.pas"/>
+        <Caret Line="73" Column="40" TopLine="71"/>
+      </Position8>
+      <Position9>
+        <Filename Value="sevenzipsfxstudiocode.pas"/>
+        <Caret Line="72" Column="37" TopLine="4"/>
+      </Position9>
+      <Position10>
+        <Filename Value="sevenzipsfxstudiocode.pas"/>
+        <Caret Line="73" Column="40"/>
+      </Position10>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

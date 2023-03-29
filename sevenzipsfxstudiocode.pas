@@ -4,7 +4,7 @@ unit sevenzipsfxstudiocode;
 
 interface
 
-uses Classes, SysUtils, FileUtil, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazFileUtils;
+uses Classes, SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazFileUtils, ComCtrls;
 
 type
 
@@ -19,6 +19,7 @@ type
     LabeledEdit2: TLabeledEdit;
     LabeledEdit3: TLabeledEdit;
     OpenDialog1: TOpenDialog;
+    StatusBar1: TStatusBar;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -37,46 +38,39 @@ var Form1: TForm1;
 
 implementation
 
-function convert_file_name(source:string): string;
+function create_sfx(module:string;cfg:string;source:string):boolean;
 var target:string;
+var is_exists:boolean;
+var sfx,configuration,archive,sfx_archive:TFileStream;
 begin
- target:=source;
- if Pos(' ',source)>0 then
- begin
-  target:='"'+source+'"';
+ target:=ExtractFileNameWithoutExt(source)+'.exe';
+ sfx:=nil;
+ configuration:=nil;
+ archive:=nil;
+ sfx_archive:=nil;
+ try
+  sfx:=TFileStream.Create(module,fmOpenRead);
+  configuration:=TFileStream.Create(cfg,fmOpenRead);
+  archive:=TFileStream.Create(source,fmOpenRead);
+  sfx_archive:=TFileStream.Create(target,fmCreate);
+  sfx_archive.CopyFrom(sfx,0);
+  sfx_archive.CopyFrom(configuration,0);
+  sfx_archive.CopyFrom(archive,0);
+ except
+  is_exists:=FileExists(target);
  end;
- convert_file_name:=target;
-end;
-
-procedure execute_command(command:string);
-var shell,arguments:string;
-begin
- shell:=GetEnvironmentVariable('COMSPEC');
- arguments:='/c '+command;
- if shell<>'' then ExecuteProcess(shell,arguments,[]);
-end;
-
-procedure create_sfx(sfx:string;configuration:string;archive:string);
-var output,target:string;
-begin
- target:=ExtractFileNameWithoutExt(archive)+'.exe';
- output:='copy /b '+convert_file_name(sfx)+'+'+convert_file_name(configuration)+'+'+convert_file_name(archive)+' '+convert_file_name(target);
- execute_command(output);
- if FileExists(target)=True then
- begin
-  ShowMessage('A self-extraction archive successfully created');
- end
- else
- begin
-  ShowMessage('A self-extraction archive creation failed');
- end;
-
+ if sfx<>nil then sfx.Free();
+ if configuration<>nil then configuration.Free();
+ if archive<>nil then archive.Free();
+ if sfx_archive<>nil then sfx_archive.Free();
+ is_exists:=FileExists(target);
+ create_sfx:=is_exists;
 end;
 
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.2.3';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.2.8';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -89,6 +83,7 @@ begin
  Form1.Button3.ShowHint:=Form1.Button1.ShowHint;
  Form1.Button4.ShowHint:=Form1.Button1.ShowHint;
  Form1.Button4.Enabled:=False;
+ Form1.StatusBar1.SimpleText:='';
  Form1.LabeledEdit1.Text:='';
  Form1.LabeledEdit2.Text:=Form1.LabeledEdit1.Text;
  Form1.LabeledEdit3.Text:=Form1.LabeledEdit1.Text;
@@ -179,7 +174,23 @@ end;
 
 procedure TForm1.Button4Click(Sender: TObject);
 begin
- create_sfx(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.LabeledEdit3.Text);
+ Form1.Button1.Enabled:=False;
+ Form1.Button2.Enabled:=False;
+ Form1.Button3.Enabled:=False;
+ Form1.Button4.Enabled:=False;
+ Form1.StatusBar1.SimpleText:='Working... Please wait';
+ if create_sfx(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.LabeledEdit3.Text)=True then
+ begin
+  Form1.StatusBar1.SimpleText:='A self-extraction archive successfully created';
+ end
+ else
+ begin
+  Form1.StatusBar1.SimpleText:='A self-extraction archive creation failed';
+ end;
+ Form1.Button1.Enabled:=True;
+ Form1.Button2.Enabled:=True;
+ Form1.Button3.Enabled:=True;
+ Form1.Button4.Enabled:=True;
 end;
 
 {$R *.lfm}

@@ -1,90 +1,100 @@
 object Form1: TForm1
   Left = 234
-  Height = 214
+  Height = 229
   Top = 155
-  Width = 430
+  Width = 439
   Caption = 'Form1'
-  ClientHeight = 214
-  ClientWidth = 430
+  ClientHeight = 229
+  ClientWidth = 439
   OnCreate = FormCreate
-  LCLVersion = '2.2.2.0'
+  LCLVersion = '2.2.6.0'
   object LabeledEdit1: TLabeledEdit
     Left = 200
     Height = 23
-    Top = 24
-    Width = 120
+    Top = 18
+    Width = 128
     EditLabel.Height = 15
-    EditLabel.Width = 120
+    EditLabel.Width = 121
     EditLabel.Caption = 'Self-extracting module'
     EditLabel.ParentColor = False
+    LabelPosition = lpLeft
     TabOrder = 0
     Text = 'LabeledEdit1'
     OnChange = LabeledEdit1Change
   end
   object LabeledEdit2: TLabeledEdit
-    Left = 200
+    Left = 160
     Height = 23
-    Top = 72
-    Width = 120
+    Top = 66
+    Width = 168
     EditLabel.Height = 15
-    EditLabel.Width = 120
+    EditLabel.Width = 93
     EditLabel.Caption = 'Configuration file'
     EditLabel.ParentColor = False
+    LabelPosition = lpLeft
     TabOrder = 1
     Text = 'LabeledEdit2'
     OnChange = LabeledEdit2Change
   end
   object LabeledEdit3: TLabeledEdit
-    Left = 200
+    Left = 104
     Height = 23
-    Top = 124
-    Width = 120
+    Top = 112
+    Width = 224
     EditLabel.Height = 15
-    EditLabel.Width = 120
+    EditLabel.Width = 33
     EditLabel.Caption = 'Arcive'
     EditLabel.ParentColor = False
+    LabelPosition = lpLeft
     TabOrder = 2
     Text = 'LabeledEdit3'
     OnChange = LabeledEdit3Change
   end
   object Button1: TButton
-    Left = 336
+    Left = 344
     Height = 25
-    Top = 24
+    Top = 16
     Width = 83
     Caption = 'Open'
     OnClick = Button1Click
     TabOrder = 3
   end
   object Button2: TButton
-    Left = 336
+    Left = 344
     Height = 25
-    Top = 72
+    Top = 64
     Width = 83
     Caption = 'Open'
     OnClick = Button2Click
     TabOrder = 4
   end
   object Button3: TButton
-    Left = 336
+    Left = 344
     Height = 25
-    Top = 120
+    Top = 110
     Width = 83
     Caption = 'Open'
     OnClick = Button3Click
     TabOrder = 5
   end
   object Button4: TButton
-    Left = 80
+    Left = 64
     Height = 25
-    Top = 168
-    Width = 272
+    Top = 160
+    Width = 256
     Caption = 'Create self-extracting archive'
     OnClick = Button4Click
     TabOrder = 6
   end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 206
+    Width = 439
+    Panels = <>
+  end
   object OpenDialog1: TOpenDialog
-    Left = 360
-    Top = 168
+    Left = 344
+    Top = 152
   end
 end
