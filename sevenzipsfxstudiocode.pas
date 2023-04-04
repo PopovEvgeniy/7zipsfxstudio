@@ -70,7 +70,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.2.8';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.2.9';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -83,7 +83,7 @@ begin
  Form1.Button3.ShowHint:=Form1.Button1.ShowHint;
  Form1.Button4.ShowHint:=Form1.Button1.ShowHint;
  Form1.Button4.Enabled:=False;
- Form1.StatusBar1.SimpleText:='';
+ Form1.StatusBar1.Visible:=False;
  Form1.LabeledEdit1.Text:='';
  Form1.LabeledEdit2.Text:=Form1.LabeledEdit1.Text;
  Form1.LabeledEdit3.Text:=Form1.LabeledEdit1.Text;
@@ -178,6 +178,7 @@ begin
  Form1.Button2.Enabled:=False;
  Form1.Button3.Enabled:=False;
  Form1.Button4.Enabled:=False;
+ Form1.StatusBar1.Visible:=True;
  Form1.StatusBar1.SimpleText:='Working... Please wait';
  if create_sfx(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.LabeledEdit3.Text)=True then
  begin
