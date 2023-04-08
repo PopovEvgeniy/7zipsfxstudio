@@ -1,6 +1,6 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.2.9
+                                  Version 2.3
 
                          This software made by Popov Evgeniy Alekseyevich
 
@@ -42,4 +42,4 @@ Change log
 2.2.3 - 2.2.4 - Small changes.
 2.2.5 - 2.2.6 - Unused code removed.
 2.2.7 - User interface improved.
-2.2.8 - 2.2.9 - Small changes.
+2.2.8 - 2.3 - Small changes.

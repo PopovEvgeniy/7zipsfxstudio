@@ -38,7 +38,7 @@ var Form1: TForm1;
 
 implementation
 
-function create_sfx(module:string;cfg:string;source:string):boolean;
+function create_sfx(const module:string;const cfg:string;const source:string):boolean;
 var target:string;
 var is_exists:boolean;
 var sfx,configuration,archive,sfx_archive:TFileStream;
@@ -70,7 +70,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.2.9';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.3';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
