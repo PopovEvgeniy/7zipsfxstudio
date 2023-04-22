@@ -40,7 +40,6 @@ implementation
 
 function create_sfx(const module:string;const cfg:string;const source:string):boolean;
 var target:string;
-var is_exists:boolean;
 var sfx,configuration,archive,sfx_archive:TFileStream;
 begin
  target:=ExtractFileNameWithoutExt(source)+'.exe';
@@ -57,20 +56,19 @@ begin
   sfx_archive.CopyFrom(configuration,0);
   sfx_archive.CopyFrom(archive,0);
  except
-  is_exists:=FileExists(target);
+  ;
  end;
  if sfx<>nil then sfx.Free();
  if configuration<>nil then configuration.Free();
  if archive<>nil then archive.Free();
  if sfx_archive<>nil then sfx_archive.Free();
- is_exists:=FileExists(target);
- create_sfx:=is_exists;
+ create_sfx:=FileExists(target);
 end;
 
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.3';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.3.1';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
