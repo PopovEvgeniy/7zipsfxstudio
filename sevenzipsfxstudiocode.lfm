@@ -7,7 +7,7 @@ object Form1: TForm1
   ClientHeight = 229
   ClientWidth = 439
   OnCreate = FormCreate
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '3.6.0.0'
   object LabeledEdit1: TLabeledEdit
     Left = 200
     Height = 23
@@ -56,8 +56,8 @@ object Form1: TForm1
     Top = 16
     Width = 83
     Caption = 'Open'
-    OnClick = Button1Click
     TabOrder = 3
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 344
@@ -65,8 +65,8 @@ object Form1: TForm1
     Top = 64
     Width = 83
     Caption = 'Open'
-    OnClick = Button2Click
     TabOrder = 4
+    OnClick = Button2Click
   end
   object Button3: TButton
     Left = 344
@@ -74,17 +74,17 @@ object Form1: TForm1
     Top = 110
     Width = 83
     Caption = 'Open'
-    OnClick = Button3Click
     TabOrder = 5
+    OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 64
+    Left = 32
     Height = 25
     Top = 160
-    Width = 256
-    Caption = 'Create self-extracting archive'
-    OnClick = Button4Click
+    Width = 288
+    Caption = 'Create the self-extracting archive'
     TabOrder = 6
+    OnClick = Button4Click
   end
   object StatusBar1: TStatusBar
     Left = 0

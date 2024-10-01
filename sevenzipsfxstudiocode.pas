@@ -68,7 +68,7 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.3.1';
+ Form1.Caption:='7-ZIP SFX STUDIO 2.3.2';
  Form1.BorderStyle:=bsDialog;
  Form1.Font.Name:=Screen.MenuFont.Name;
  Form1.Font.Size:=14;
@@ -98,11 +98,11 @@ begin
  Form1.Button1.Caption:='Open';
  Form1.Button2.Caption:='Open';
  Form1.Button3.Caption:='Open';
- Form1.Button4.Caption:='Create self-extracting archive';
+ Form1.Button4.Caption:='Create the self-extracting archive';
  Form1.LabeledEdit1.EditLabel.Caption:='Self-extracting module';
  Form1.LabeledEdit2.EditLabel.Caption:='Configuration file';
  Form1.LabeledEdit3.EditLabel.Caption:='Archive';
- Form1.OpenDialog1.Title:='Open existing file';
+ Form1.OpenDialog1.Title:='Open the existing file';
 end;
 
 procedure setup();
@@ -180,11 +180,11 @@ begin
  Form1.StatusBar1.SimpleText:='Working... Please wait';
  if create_sfx(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.LabeledEdit3.Text)=True then
  begin
-  Form1.StatusBar1.SimpleText:='A self-extraction archive successfully created';
+  Form1.StatusBar1.SimpleText:='A self-extraction archive was successfully created';
  end
  else
  begin
-  Form1.StatusBar1.SimpleText:='A self-extraction archive creation failed';
+  Form1.StatusBar1.SimpleText:='A self-extraction archive creation was failed';
  end;
  Form1.Button1.Enabled:=True;
  Form1.Button2.Enabled:=True;
