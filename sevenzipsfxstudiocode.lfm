@@ -1,99 +1,98 @@
-object Form1: TForm1
+object MainWindow: TMainWindow
   Left = 234
   Height = 229
   Top = 155
   Width = 439
-  Caption = 'Form1'
+  Caption = '7-ZIP SFX STUDIO'
   ClientHeight = 229
   ClientWidth = 439
-  LCLVersion = '4.0.0.1'
   OnCreate = FormCreate
-  object LabeledEdit1: TLabeledEdit
+  object SfxField: TLabeledEdit
     Left = 200
     Height = 23
     Top = 18
     Width = 128
-    EditLabel.Height = 15
-    EditLabel.Width = 121
+    EditLabel.Height = 23
+    EditLabel.Width = 120
     EditLabel.Caption = 'Self-extracting module'
     EditLabel.ParentColor = False
     LabelPosition = lpLeft
     TabOrder = 0
-    Text = 'LabeledEdit1'
-    OnChange = LabeledEdit1Change
+    Text = 'SfxField'
+    OnChange = SfxFieldChange
   end
-  object LabeledEdit2: TLabeledEdit
+  object ConfigurationField: TLabeledEdit
     Left = 160
     Height = 23
     Top = 66
     Width = 168
-    EditLabel.Height = 15
+    EditLabel.Height = 23
     EditLabel.Width = 93
     EditLabel.Caption = 'Configuration file'
     EditLabel.ParentColor = False
     LabelPosition = lpLeft
     TabOrder = 1
-    Text = 'LabeledEdit2'
-    OnChange = LabeledEdit2Change
+    Text = 'ConfigurationField'
+    OnChange = ConfigurationFieldChange
   end
-  object LabeledEdit3: TLabeledEdit
+  object ArchiveField: TLabeledEdit
     Left = 104
     Height = 23
     Top = 112
     Width = 224
-    EditLabel.Height = 15
+    EditLabel.Height = 23
     EditLabel.Width = 33
     EditLabel.Caption = 'Arcive'
     EditLabel.ParentColor = False
     LabelPosition = lpLeft
     TabOrder = 2
-    Text = 'LabeledEdit3'
-    OnChange = LabeledEdit3Change
+    Text = 'ArchiveField'
+    OnChange = ArchiveFieldChange
   end
-  object Button1: TButton
+  object OpenSfxButton: TButton
     Left = 344
     Height = 25
     Top = 16
     Width = 83
     Caption = 'Open'
     TabOrder = 3
-    OnClick = Button1Click
+    OnClick = OpenSfxButtonClick
   end
-  object Button2: TButton
+  object OpenConfigurationButton: TButton
     Left = 344
     Height = 25
     Top = 64
     Width = 83
     Caption = 'Open'
     TabOrder = 4
-    OnClick = Button2Click
+    OnClick = OpenConfigurationButtonClick
   end
-  object Button3: TButton
+  object OpenArchiveButton: TButton
     Left = 344
     Height = 25
     Top = 110
     Width = 83
     Caption = 'Open'
     TabOrder = 5
-    OnClick = Button3Click
+    OnClick = OpenArchiveButtonClick
   end
-  object Button4: TButton
+  object CreateButton: TButton
     Left = 32
     Height = 25
     Top = 160
     Width = 288
     Caption = 'Create the self-extracting archive'
     TabOrder = 6
-    OnClick = Button4Click
+    OnClick = CreateButtonClick
   end
-  object StatusBar1: TStatusBar
+  object OperationStatus: TStatusBar
     Left = 0
     Height = 23
     Top = 206
     Width = 439
     Panels = <>
   end
-  object OpenDialog1: TOpenDialog
+  object OpenDialog: TOpenDialog
     Left = 344
     Top = 152
   end

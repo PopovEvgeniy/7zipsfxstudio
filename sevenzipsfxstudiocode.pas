@@ -8,33 +8,33 @@ uses Classes, SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazFileUti
 
 type
 
-  { TForm1 }
+  { TMainWindow }
 
-  TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    LabeledEdit1: TLabeledEdit;
-    LabeledEdit2: TLabeledEdit;
-    LabeledEdit3: TLabeledEdit;
-    OpenDialog1: TOpenDialog;
-    StatusBar1: TStatusBar;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
+  TMainWindow = class(TForm)
+    OpenSfxButton: TButton;
+    OpenConfigurationButton: TButton;
+    OpenArchiveButton: TButton;
+    CreateButton: TButton;
+    SfxField: TLabeledEdit;
+    ConfigurationField: TLabeledEdit;
+    ArchiveField: TLabeledEdit;
+    OpenDialog: TOpenDialog;
+    OperationStatus: TStatusBar;
+    procedure OpenSfxButtonClick(Sender: TObject);
+    procedure OpenConfigurationButtonClick(Sender: TObject);
+    procedure OpenArchiveButtonClick(Sender: TObject);
+    procedure CreateButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure LabeledEdit1Change(Sender: TObject);
-    procedure LabeledEdit2Change(Sender: TObject);
-    procedure LabeledEdit3Change(Sender: TObject);
+    procedure SfxFieldChange(Sender: TObject);
+    procedure ConfigurationFieldChange(Sender: TObject);
+    procedure ArchiveFieldChange(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
   end; 
 
-var Form1: TForm1;
+var MainWindow: TMainWindow;
 
 implementation
 
@@ -68,41 +68,41 @@ end;
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Form1.Caption:='7-ZIP SFX STUDIO 2.3.3';
- Form1.BorderStyle:=bsDialog;
- Form1.Font.Name:=Screen.MenuFont.Name;
- Form1.Font.Size:=14;
+ MainWindow.Caption:='7-ZIP SFX STUDIO 2.3.4';
+ MainWindow.BorderStyle:=bsDialog;
+ MainWindow.Font.Name:=Screen.MenuFont.Name;
+ MainWindow.Font.Size:=14;
 end;
 
 procedure interface_setup();
 begin
- Form1.Button1.ShowHint:=False;
- Form1.Button2.ShowHint:=Form1.Button1.ShowHint;
- Form1.Button3.ShowHint:=Form1.Button1.ShowHint;
- Form1.Button4.ShowHint:=Form1.Button1.ShowHint;
- Form1.Button4.Enabled:=False;
- Form1.StatusBar1.Visible:=False;
- Form1.LabeledEdit1.Text:='';
- Form1.LabeledEdit2.Text:=Form1.LabeledEdit1.Text;
- Form1.LabeledEdit3.Text:=Form1.LabeledEdit1.Text;
- Form1.LabeledEdit1.LabelPosition:=lpLeft;
- Form1.LabeledEdit2.LabelPosition:=Form1.LabeledEdit1.LabelPosition;
- Form1.LabeledEdit3.LabelPosition:=Form1.LabeledEdit1.LabelPosition;
- Form1.LabeledEdit1.Enabled:=False;
- Form1.LabeledEdit2.Enabled:=Form1.LabeledEdit1.Enabled;
- Form1.LabeledEdit3.Enabled:=Form1.LabeledEdit1.Enabled;
+ MainWindow.OpenSfxButton.ShowHint:=False;
+ MainWindow.OpenConfigurationButton.ShowHint:=MainWindow.OpenSfxButton.ShowHint;
+ MainWindow.OpenArchiveButton.ShowHint:=MainWindow.OpenSfxButton.ShowHint;
+ MainWindow.CreateButton.ShowHint:=MainWindow.OpenSfxButton.ShowHint;
+ MainWindow.CreateButton.Enabled:=False;
+ MainWindow.OperationStatus.Visible:=False;
+ MainWindow.SfxField.Text:='';
+ MainWindow.ConfigurationField.Text:=MainWindow.SfxField.Text;
+ MainWindow.ArchiveField.Text:=MainWindow.SfxField.Text;
+ MainWindow.SfxField.LabelPosition:=lpLeft;
+ MainWindow.ConfigurationField.LabelPosition:=MainWindow.SfxField.LabelPosition;
+ MainWindow.ArchiveField.LabelPosition:=MainWindow.SfxField.LabelPosition;
+ MainWindow.SfxField.Enabled:=False;
+ MainWindow.ConfigurationField.Enabled:=MainWindow.SfxField.Enabled;
+ MainWindow.ArchiveField.Enabled:=MainWindow.SfxField.Enabled;
 end;
 
 procedure language_setup();
 begin
- Form1.Button1.Caption:='Open';
- Form1.Button2.Caption:='Open';
- Form1.Button3.Caption:='Open';
- Form1.Button4.Caption:='Create the self-extracting archive';
- Form1.LabeledEdit1.EditLabel.Caption:='Self-extracting module';
- Form1.LabeledEdit2.EditLabel.Caption:='Configuration file';
- Form1.LabeledEdit3.EditLabel.Caption:='Archive';
- Form1.OpenDialog1.Title:='Open the existing file';
+ MainWindow.OpenSfxButton.Caption:='Open';
+ MainWindow.OpenConfigurationButton.Caption:='Open';
+ MainWindow.OpenArchiveButton.Caption:='Open';
+ MainWindow.CreateButton.Caption:='Create the self-extracting archive';
+ MainWindow.SfxField.EditLabel.Caption:='Self-extracting module';
+ MainWindow.ConfigurationField.EditLabel.Caption:='Configuration file';
+ MainWindow.ArchiveField.EditLabel.Caption:='Archive';
+ MainWindow.OpenDialog.Title:='Open the existing file';
 end;
 
 procedure setup();
@@ -112,90 +112,90 @@ begin
  language_setup();
 end;
 
-{ TForm1 }
+{ TMainWindow }
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TMainWindow.FormCreate(Sender: TObject);
 begin
  setup();
 end;
 
-procedure TForm1.LabeledEdit1Change(Sender: TObject);
+procedure TMainWindow.SfxFieldChange(Sender: TObject);
 begin
- Form1.Button4.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'') and (Form1.LabeledEdit3.Text<>'');
+ MainWindow.CreateButton.Enabled:=(MainWindow.SfxField.Text<>'') and (MainWindow.ConfigurationField.Text<>'') and (MainWindow.ArchiveField.Text<>'');
 end;
 
-procedure TForm1.LabeledEdit2Change(Sender: TObject);
+procedure TMainWindow.ConfigurationFieldChange(Sender: TObject);
 begin
- Form1.Button4.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'') and (Form1.LabeledEdit3.Text<>'');
+ MainWindow.CreateButton.Enabled:=(MainWindow.SfxField.Text<>'') and (MainWindow.ConfigurationField.Text<>'') and (MainWindow.ArchiveField.Text<>'');
 end;
 
-procedure TForm1.LabeledEdit3Change(Sender: TObject);
+procedure TMainWindow.ArchiveFieldChange(Sender: TObject);
 begin
- Form1.Button4.Enabled:=(Form1.LabeledEdit1.Text<>'') and (Form1.LabeledEdit2.Text<>'') and (Form1.LabeledEdit3.Text<>'');
+ MainWindow.CreateButton.Enabled:=(MainWindow.SfxField.Text<>'') and (MainWindow.ConfigurationField.Text<>'') and (MainWindow.ArchiveField.Text<>'');
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TMainWindow.OpenSfxButtonClick(Sender: TObject);
 begin
- Form1.OpenDialog1.FileName:='*.sfx';
- Form1.OpenDialog1.DefaultExt:='*.sfx';
- Form1.OpenDialog1.Filter:='SFX module|*.sfx';
- if Form1.OpenDialog1.Execute()=True then
+ MainWindow.OpenDialog.FileName:='*.sfx';
+ MainWindow.OpenDialog.DefaultExt:='*.sfx';
+ MainWindow.OpenDialog.Filter:='SFX module|*.sfx';
+ if MainWindow.OpenDialog.Execute()=True then
  begin
-  Form1.LabeledEdit1.Text:=Form1.OpenDialog1.FileName;
+  MainWindow.SfxField.Text:=MainWindow.OpenDialog.FileName;
  end;
 
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TMainWindow.OpenConfigurationButtonClick(Sender: TObject);
 begin
- Form1.OpenDialog1.FileName:='*.txt';
- Form1.OpenDialog1.DefaultExt:='*.txt';
- Form1.OpenDialog1.Filter:='Configuration file|*.txt';
- if Form1.OpenDialog1.Execute()=True then
+ MainWindow.OpenDialog.FileName:='*.txt';
+ MainWindow.OpenDialog.DefaultExt:='*.txt';
+ MainWindow.OpenDialog.Filter:='Configuration file|*.txt';
+ if MainWindow.OpenDialog.Execute()=True then
  begin
-  Form1.LabeledEdit2.Text:=Form1.OpenDialog1.FileName;
+  MainWindow.ConfigurationField.Text:=MainWindow.OpenDialog.FileName;
  end;
 
 end;
 
-procedure TForm1.Button3Click(Sender: TObject);
+procedure TMainWindow.OpenArchiveButtonClick(Sender: TObject);
 begin
- Form1.OpenDialog1.FileName:='*.7z';
- Form1.OpenDialog1.DefaultExt:='*.7z';
- Form1.OpenDialog1.Filter:='7-ZIP archive|*.7z';
- if Form1.OpenDialog1.Execute()=True then
+ MainWindow.OpenDialog.FileName:='*.7z';
+ MainWindow.OpenDialog.DefaultExt:='*.7z';
+ MainWindow.OpenDialog.Filter:='7-ZIP archive|*.7z';
+ if MainWindow.OpenDialog.Execute()=True then
  begin
-  Form1.LabeledEdit3.Text:=Form1.OpenDialog1.FileName;
+  MainWindow.ArchiveField.Text:=MainWindow.OpenDialog.FileName;
  end;
 
 end;
 
-procedure TForm1.Button4Click(Sender: TObject);
+procedure TMainWindow.CreateButtonClick(Sender: TObject);
 begin
- Form1.Button1.Enabled:=False;
- Form1.Button2.Enabled:=False;
- Form1.Button3.Enabled:=False;
- Form1.Button4.Enabled:=False;
- Form1.StatusBar1.Visible:=True;
- Form1.StatusBar1.SimpleText:='Working... Please wait';
- if create_sfx(Form1.LabeledEdit1.Text,Form1.LabeledEdit2.Text,Form1.LabeledEdit3.Text)=True then
+ MainWindow.OpenSfxButton.Enabled:=False;
+ MainWindow.OpenConfigurationButton.Enabled:=False;
+ MainWindow.OpenArchiveButton.Enabled:=False;
+ MainWindow.CreateButton.Enabled:=False;
+ MainWindow.OperationStatus.Visible:=True;
+ MainWindow.OperationStatus.SimpleText:='Working... Please wait';
+ if create_sfx(MainWindow.SfxField.Text,MainWindow.ConfigurationField.Text,MainWindow.ArchiveField.Text)=True then
  begin
-  Form1.StatusBar1.SimpleText:='A self-extraction archive was successfully created';
+  MainWindow.OperationStatus.SimpleText:='A self-extraction archive was successfully created';
  end
  else
  begin
-  Form1.StatusBar1.SimpleText:='A self-extraction archive creation was failed';
+  MainWindow.OperationStatus.SimpleText:='A self-extraction archive creation failed';
  end;
- Form1.Button1.Enabled:=True;
- Form1.Button2.Enabled:=True;
- Form1.Button3.Enabled:=True;
- Form1.Button4.Enabled:=True;
+ MainWindow.OpenSfxButton.Enabled:=True;
+ MainWindow.OpenConfigurationButton.Enabled:=True;
+ MainWindow.OpenArchiveButton.Enabled:=True;
+ MainWindow.CreateButton.Enabled:=True;
 end;
 
 {$R *.lfm}
 
-{ TForm1 }
+{ TMainWindow }
 
-{ TForm1 }
+{ TMainWindow }
 
 end.
