@@ -1,6 +1,6 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.3.4.1
+                                  Version 2.3.6
 
                          This software was made by Popov Evgeniy Alekseyevich
 
@@ -20,7 +20,7 @@ This program is distributed under the GNU GENERAL PUBLIC LICENSE.
 About program modification
 
 The code is included in the source.zip archive.
-It can be compiled under Lazarus 4.0 RC3 or higher.
+It can be compiled under Lazarus 4.2 or higher.
 
 Change log
 
@@ -45,3 +45,5 @@ Change log
 2.3.3: The source code was recompiled under Lazarus 4.0 RC1.
 2.3.4: The source code was recompiled under Lazarus 4.0 RC3.
 2.3.4.1: The documentation has been updated.
+2.3.5: The small changes.
+2.3.6: The user interface has improved.

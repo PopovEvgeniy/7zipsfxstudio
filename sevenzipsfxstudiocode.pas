@@ -19,7 +19,6 @@ type
     ConfigurationField: TLabeledEdit;
     ArchiveField: TLabeledEdit;
     OpenDialog: TOpenDialog;
-    OperationStatus: TStatusBar;
     procedure OpenSfxButtonClick(Sender: TObject);
     procedure OpenConfigurationButtonClick(Sender: TObject);
     procedure OpenArchiveButtonClick(Sender: TObject);
@@ -38,7 +37,7 @@ var MainWindow: TMainWindow;
 
 implementation
 
-function create_sfx(const module:string;const cfg:string;const source:string):boolean;
+procedure create_sfx(const module:string;const cfg:string;const source:string);
 var target:string;
 var sfx,configuration,archive,sfx_archive:TFileStream;
 begin
@@ -56,19 +55,18 @@ begin
   sfx_archive.CopyFrom(configuration,0);
   sfx_archive.CopyFrom(archive,0);
  except
-  ;
+  ShowMessage('A self-extraction archive creation failed');
  end;
  if sfx<>nil then sfx.Free();
  if configuration<>nil then configuration.Free();
  if archive<>nil then archive.Free();
  if sfx_archive<>nil then sfx_archive.Free();
- create_sfx:=FileExists(target);
 end;
 
 procedure window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- MainWindow.Caption:='7-ZIP SFX STUDIO 2.3.4';
+ MainWindow.Caption:='7-ZIP SFX STUDIO 2.3.6';
  MainWindow.BorderStyle:=bsDialog;
  MainWindow.Font.Name:=Screen.MenuFont.Name;
  MainWindow.Font.Size:=14;
@@ -81,7 +79,6 @@ begin
  MainWindow.OpenArchiveButton.ShowHint:=MainWindow.OpenSfxButton.ShowHint;
  MainWindow.CreateButton.ShowHint:=MainWindow.OpenSfxButton.ShowHint;
  MainWindow.CreateButton.Enabled:=False;
- MainWindow.OperationStatus.Visible:=False;
  MainWindow.SfxField.Text:='';
  MainWindow.ConfigurationField.Text:=MainWindow.SfxField.Text;
  MainWindow.ArchiveField.Text:=MainWindow.SfxField.Text;
@@ -99,9 +96,9 @@ begin
  MainWindow.OpenConfigurationButton.Caption:='Open';
  MainWindow.OpenArchiveButton.Caption:='Open';
  MainWindow.CreateButton.Caption:='Create the self-extracting archive';
- MainWindow.SfxField.EditLabel.Caption:='Self-extracting module';
- MainWindow.ConfigurationField.EditLabel.Caption:='Configuration file';
- MainWindow.ArchiveField.EditLabel.Caption:='Archive';
+ MainWindow.SfxField.EditLabel.Caption:='A self-extracting module';
+ MainWindow.ConfigurationField.EditLabel.Caption:='A configuration file';
+ MainWindow.ArchiveField.EditLabel.Caption:='An archive';
  MainWindow.OpenDialog.Title:='Open the existing file';
 end;
 
@@ -138,7 +135,7 @@ procedure TMainWindow.OpenSfxButtonClick(Sender: TObject);
 begin
  MainWindow.OpenDialog.FileName:='*.sfx';
  MainWindow.OpenDialog.DefaultExt:='*.sfx';
- MainWindow.OpenDialog.Filter:='SFX module|*.sfx';
+ MainWindow.OpenDialog.Filter:='A SFX module|*.sfx';
  if MainWindow.OpenDialog.Execute()=True then
  begin
   MainWindow.SfxField.Text:=MainWindow.OpenDialog.FileName;
@@ -150,7 +147,7 @@ procedure TMainWindow.OpenConfigurationButtonClick(Sender: TObject);
 begin
  MainWindow.OpenDialog.FileName:='*.txt';
  MainWindow.OpenDialog.DefaultExt:='*.txt';
- MainWindow.OpenDialog.Filter:='Configuration file|*.txt';
+ MainWindow.OpenDialog.Filter:='A configuration file|*.txt';
  if MainWindow.OpenDialog.Execute()=True then
  begin
   MainWindow.ConfigurationField.Text:=MainWindow.OpenDialog.FileName;
@@ -162,7 +159,7 @@ procedure TMainWindow.OpenArchiveButtonClick(Sender: TObject);
 begin
  MainWindow.OpenDialog.FileName:='*.7z';
  MainWindow.OpenDialog.DefaultExt:='*.7z';
- MainWindow.OpenDialog.Filter:='7-ZIP archive|*.7z';
+ MainWindow.OpenDialog.Filter:='A 7-ZIP archive|*.7z';
  if MainWindow.OpenDialog.Execute()=True then
  begin
   MainWindow.ArchiveField.Text:=MainWindow.OpenDialog.FileName;
@@ -176,16 +173,7 @@ begin
  MainWindow.OpenConfigurationButton.Enabled:=False;
  MainWindow.OpenArchiveButton.Enabled:=False;
  MainWindow.CreateButton.Enabled:=False;
- MainWindow.OperationStatus.Visible:=True;
- MainWindow.OperationStatus.SimpleText:='Working... Please wait';
- if create_sfx(MainWindow.SfxField.Text,MainWindow.ConfigurationField.Text,MainWindow.ArchiveField.Text)=True then
- begin
-  MainWindow.OperationStatus.SimpleText:='A self-extraction archive was successfully created';
- end
- else
- begin
-  MainWindow.OperationStatus.SimpleText:='A self-extraction archive creation failed';
- end;
+ create_sfx(MainWindow.SfxField.Text,MainWindow.ConfigurationField.Text,MainWindow.ArchiveField.Text);
  MainWindow.OpenSfxButton.Enabled:=True;
  MainWindow.OpenConfigurationButton.Enabled:=True;
  MainWindow.OpenArchiveButton.Enabled:=True;
@@ -193,9 +181,5 @@ begin
 end;
 
 {$R *.lfm}
-
-{ TMainWindow }
-
-{ TMainWindow }
 
 end.
