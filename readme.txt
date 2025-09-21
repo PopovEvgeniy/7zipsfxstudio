@@ -1,30 +1,30 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.3.6
+                                  Version 2.3.6.1
 
                          This software was made by Popov Evgeniy Alekseyevich
 
-System requirements
+System requirements.
 
 Windows 2000 or higher for 32-bit systems
 Windows Vista or higher for 64-bit systems
 
-Program description
+The program description.
 
 This program lets you convert a 7-Zip archive to a self-extracting archive.
 
-License
+License.
 
 This program is distributed under the GNU GENERAL PUBLIC LICENSE.
 
-About program modification
+The source code.
 
 The code is included in the source.zip archive.
 It can be compiled under Lazarus 4.2 or higher.
 
-Change log
+Version history.
 
-1.0: Initial version.
+1.0: The initial version.
 1.1: The first public release.
 1.2-2.1.3: The stable branch.
 2.1.4: The program was totally rewritten.
@@ -47,3 +47,4 @@ Change log
 2.3.4.1: The documentation has been updated.
 2.3.5: The small changes.
 2.3.6: The user interface has improved.
+2.3.6.1: The documentation has been updated.
