@@ -6,6 +6,7 @@ object MainWindow: TMainWindow
   Caption = '7-ZIP SFX STUDIO'
   ClientHeight = 220
   ClientWidth = 447
+  LCLVersion = '4.8.0.0'
   OnCreate = FormCreate
   object SfxField: TLabeledEdit
     Left = 216

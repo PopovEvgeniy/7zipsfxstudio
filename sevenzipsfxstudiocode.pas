@@ -1,6 +1,12 @@
 unit sevenzipsfxstudiocode;
 
-{$mode objfpc}{$H+}
+{
+ This software was made by Popov Evgeniy Alekseyevich.
+ It is distributed under the GNU GENERAL PUBLIC LICENSE (Version 2 or higher).
+}
+
+{$mode objfpc}
+{$H+}
 
 interface
 
@@ -28,7 +34,10 @@ type
     procedure ConfigurationFieldChange(Sender: TObject);
     procedure ArchiveFieldChange(Sender: TObject);
   private
-    { private declarations }
+    procedure window_setup();
+    procedure interface_setup();
+    procedure language_setup();
+    procedure setup();
   public
     { public declarations }
   end; 
@@ -63,121 +72,121 @@ begin
  if sfx_archive<>nil then sfx_archive.Free();
 end;
 
-procedure window_setup();
+procedure TMainWindow.window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- MainWindow.Caption:='7-ZIP SFX STUDIO 2.3.6';
- MainWindow.BorderStyle:=bsDialog;
- MainWindow.Font.Name:=Screen.MenuFont.Name;
- MainWindow.Font.Size:=14;
+ Self.Caption:='7-ZIP SFX STUDIO 2.3.7';
+ Self.BorderStyle:=bsDialog;
+ Self.Font.Name:=Screen.MenuFont.Name;
+ Self.Font.Size:=14;
 end;
 
-procedure interface_setup();
+procedure TMainWindow.interface_setup();
 begin
- MainWindow.OpenSfxButton.ShowHint:=False;
- MainWindow.OpenConfigurationButton.ShowHint:=MainWindow.OpenSfxButton.ShowHint;
- MainWindow.OpenArchiveButton.ShowHint:=MainWindow.OpenSfxButton.ShowHint;
- MainWindow.CreateButton.ShowHint:=MainWindow.OpenSfxButton.ShowHint;
- MainWindow.CreateButton.Enabled:=False;
- MainWindow.SfxField.Text:='';
- MainWindow.ConfigurationField.Text:=MainWindow.SfxField.Text;
- MainWindow.ArchiveField.Text:=MainWindow.SfxField.Text;
- MainWindow.SfxField.LabelPosition:=lpLeft;
- MainWindow.ConfigurationField.LabelPosition:=MainWindow.SfxField.LabelPosition;
- MainWindow.ArchiveField.LabelPosition:=MainWindow.SfxField.LabelPosition;
- MainWindow.SfxField.Enabled:=False;
- MainWindow.ConfigurationField.Enabled:=MainWindow.SfxField.Enabled;
- MainWindow.ArchiveField.Enabled:=MainWindow.SfxField.Enabled;
+ Self.OpenSfxButton.ShowHint:=False;
+ Self.OpenConfigurationButton.ShowHint:=False;
+ Self.OpenArchiveButton.ShowHint:=False;
+ Self.CreateButton.ShowHint:=False;
+ Self.CreateButton.Enabled:=False;
+ Self.SfxField.Text:='';
+ Self.ConfigurationField.Text:='';
+ Self.ArchiveField.Text:='';
+ Self.SfxField.LabelPosition:=lpLeft;
+ Self.ConfigurationField.LabelPosition:=lpLeft;
+ Self.ArchiveField.LabelPosition:=lpLeft;
+ Self.SfxField.Enabled:=False;
+ Self.ConfigurationField.Enabled:=False;
+ Self.ArchiveField.Enabled:=False;
 end;
 
-procedure language_setup();
+procedure TMainWindow.language_setup();
 begin
- MainWindow.OpenSfxButton.Caption:='Open';
- MainWindow.OpenConfigurationButton.Caption:='Open';
- MainWindow.OpenArchiveButton.Caption:='Open';
- MainWindow.CreateButton.Caption:='Create the self-extracting archive';
- MainWindow.SfxField.EditLabel.Caption:='A self-extracting module';
- MainWindow.ConfigurationField.EditLabel.Caption:='A configuration file';
- MainWindow.ArchiveField.EditLabel.Caption:='An archive';
- MainWindow.OpenDialog.Title:='Open the existing file';
+ Self.OpenSfxButton.Caption:='Open';
+ Self.OpenConfigurationButton.Caption:='Open';
+ Self.OpenArchiveButton.Caption:='Open';
+ Self.CreateButton.Caption:='Create the self-extracting archive';
+ Self.SfxField.EditLabel.Caption:='A self-extracting module';
+ Self.ConfigurationField.EditLabel.Caption:='A configuration file';
+ Self.ArchiveField.EditLabel.Caption:='An archive';
+ Self.OpenDialog.Title:='Open the existing file';
 end;
 
-procedure setup();
+procedure TMainWindow.setup();
 begin
- window_setup();
- interface_setup();
- language_setup();
+ Self.window_setup();
+ Self.interface_setup();
+ Self.language_setup();
 end;
 
 { TMainWindow }
 
 procedure TMainWindow.FormCreate(Sender: TObject);
 begin
- setup();
+ Self.setup();
 end;
 
 procedure TMainWindow.SfxFieldChange(Sender: TObject);
 begin
- MainWindow.CreateButton.Enabled:=(MainWindow.SfxField.Text<>'') and (MainWindow.ConfigurationField.Text<>'') and (MainWindow.ArchiveField.Text<>'');
+ Self.CreateButton.Enabled:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
 end;
 
 procedure TMainWindow.ConfigurationFieldChange(Sender: TObject);
 begin
- MainWindow.CreateButton.Enabled:=(MainWindow.SfxField.Text<>'') and (MainWindow.ConfigurationField.Text<>'') and (MainWindow.ArchiveField.Text<>'');
+ Self.CreateButton.Enabled:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
 end;
 
 procedure TMainWindow.ArchiveFieldChange(Sender: TObject);
 begin
- MainWindow.CreateButton.Enabled:=(MainWindow.SfxField.Text<>'') and (MainWindow.ConfigurationField.Text<>'') and (MainWindow.ArchiveField.Text<>'');
+ Self.CreateButton.Enabled:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
 end;
 
 procedure TMainWindow.OpenSfxButtonClick(Sender: TObject);
 begin
- MainWindow.OpenDialog.FileName:='*.sfx';
- MainWindow.OpenDialog.DefaultExt:='*.sfx';
- MainWindow.OpenDialog.Filter:='A SFX module|*.sfx';
- if MainWindow.OpenDialog.Execute()=True then
+ Self.OpenDialog.FileName:='*.sfx';
+ Self.OpenDialog.DefaultExt:='*.sfx';
+ Self.OpenDialog.Filter:='A SFX module|*.sfx';
+ if Self.OpenDialog.Execute()=True then
  begin
-  MainWindow.SfxField.Text:=MainWindow.OpenDialog.FileName;
+  Self.SfxField.Text:=Self.OpenDialog.FileName;
  end;
 
 end;
 
 procedure TMainWindow.OpenConfigurationButtonClick(Sender: TObject);
 begin
- MainWindow.OpenDialog.FileName:='*.txt';
- MainWindow.OpenDialog.DefaultExt:='*.txt';
- MainWindow.OpenDialog.Filter:='A configuration file|*.txt';
- if MainWindow.OpenDialog.Execute()=True then
+ Self.OpenDialog.FileName:='*.txt';
+ Self.OpenDialog.DefaultExt:='*.txt';
+ Self.OpenDialog.Filter:='A configuration file|*.txt';
+ if Self.OpenDialog.Execute()=True then
  begin
-  MainWindow.ConfigurationField.Text:=MainWindow.OpenDialog.FileName;
+  Self.ConfigurationField.Text:=Self.OpenDialog.FileName;
  end;
 
 end;
 
 procedure TMainWindow.OpenArchiveButtonClick(Sender: TObject);
 begin
- MainWindow.OpenDialog.FileName:='*.7z';
- MainWindow.OpenDialog.DefaultExt:='*.7z';
- MainWindow.OpenDialog.Filter:='A 7-ZIP archive|*.7z';
- if MainWindow.OpenDialog.Execute()=True then
+ Self.OpenDialog.FileName:='*.7z';
+ Self.OpenDialog.DefaultExt:='*.7z';
+ Self.OpenDialog.Filter:='A 7-ZIP archive|*.7z';
+ if Self.OpenDialog.Execute()=True then
  begin
-  MainWindow.ArchiveField.Text:=MainWindow.OpenDialog.FileName;
+  Self.ArchiveField.Text:=Self.OpenDialog.FileName;
  end;
 
 end;
 
 procedure TMainWindow.CreateButtonClick(Sender: TObject);
 begin
- MainWindow.OpenSfxButton.Enabled:=False;
- MainWindow.OpenConfigurationButton.Enabled:=False;
- MainWindow.OpenArchiveButton.Enabled:=False;
- MainWindow.CreateButton.Enabled:=False;
- create_sfx(MainWindow.SfxField.Text,MainWindow.ConfigurationField.Text,MainWindow.ArchiveField.Text);
- MainWindow.OpenSfxButton.Enabled:=True;
- MainWindow.OpenConfigurationButton.Enabled:=True;
- MainWindow.OpenArchiveButton.Enabled:=True;
- MainWindow.CreateButton.Enabled:=True;
+ Self.OpenSfxButton.Enabled:=False;
+ Self.OpenConfigurationButton.Enabled:=False;
+ Self.OpenArchiveButton.Enabled:=False;
+ Self.CreateButton.Enabled:=False;
+ create_sfx(Self.SfxField.Text,Self.ConfigurationField.Text,Self.ArchiveField.Text);
+ Self.OpenSfxButton.Enabled:=True;
+ Self.OpenConfigurationButton.Enabled:=True;
+ Self.OpenArchiveButton.Enabled:=True;
+ Self.CreateButton.Enabled:=True;
 end;
 
 {$R *.lfm}
