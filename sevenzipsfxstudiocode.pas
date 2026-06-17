@@ -34,6 +34,7 @@ type
     procedure ConfigurationFieldChange(Sender: TObject);
     procedure ArchiveFieldChange(Sender: TObject);
   private
+    function check_input():boolean;
     procedure window_setup();
     procedure interface_setup();
     procedure language_setup();
@@ -64,7 +65,7 @@ begin
   sfx_archive.CopyFrom(configuration,0);
   sfx_archive.CopyFrom(archive,0);
  except
-  ShowMessage('A self-extraction archive creation failed');
+  on E:Exception do ShowMessage(E.Message);
  end;
  if sfx<>nil then sfx.Free();
  if configuration<>nil then configuration.Free();
@@ -72,10 +73,15 @@ begin
  if sfx_archive<>nil then sfx_archive.Free();
 end;
 
+function TMainWindow.check_input():boolean;
+begin
+ Result:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
+end;
+
 procedure TMainWindow.window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Self.Caption:='7-ZIP SFX STUDIO 2.3.7';
+ Self.Caption:='7-ZIP SFX STUDIO 2.3.9';
  Self.BorderStyle:=bsDialog;
  Self.Font.Name:=Screen.MenuFont.Name;
  Self.Font.Size:=14;
@@ -127,17 +133,17 @@ end;
 
 procedure TMainWindow.SfxFieldChange(Sender: TObject);
 begin
- Self.CreateButton.Enabled:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
+ Self.CreateButton.Enabled:=Self.check_input();
 end;
 
 procedure TMainWindow.ConfigurationFieldChange(Sender: TObject);
 begin
- Self.CreateButton.Enabled:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
+ Self.CreateButton.Enabled:=Self.check_input();
 end;
 
 procedure TMainWindow.ArchiveFieldChange(Sender: TObject);
 begin
- Self.CreateButton.Enabled:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
+ Self.CreateButton.Enabled:=Self.check_input();
 end;
 
 procedure TMainWindow.OpenSfxButtonClick(Sender: TObject);
