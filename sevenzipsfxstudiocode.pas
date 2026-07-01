@@ -10,7 +10,7 @@ unit sevenzipsfxstudiocode;
 
 interface
 
-uses Classes, SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazFileUtils, ComCtrls;
+uses Classes, SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazFileUtils, ComCtrls, sfxmaker;
 
 type
 
@@ -47,32 +47,6 @@ var MainWindow: TMainWindow;
 
 implementation
 
-procedure create_sfx(const module:string;const cfg:string;const source:string);
-var target:string;
-var sfx,configuration,archive,sfx_archive:TFileStream;
-begin
- target:=ExtractFileNameWithoutExt(source)+'.exe';
- sfx:=nil;
- configuration:=nil;
- archive:=nil;
- sfx_archive:=nil;
- try
-  sfx:=TFileStream.Create(module,fmOpenRead);
-  configuration:=TFileStream.Create(cfg,fmOpenRead);
-  archive:=TFileStream.Create(source,fmOpenRead);
-  sfx_archive:=TFileStream.Create(target,fmCreate);
-  sfx_archive.CopyFrom(sfx,0);
-  sfx_archive.CopyFrom(configuration,0);
-  sfx_archive.CopyFrom(archive,0);
- except
-  on E:Exception do ShowMessage(E.Message);
- end;
- if sfx<>nil then sfx.Free();
- if configuration<>nil then configuration.Free();
- if archive<>nil then archive.Free();
- if sfx_archive<>nil then sfx_archive.Free();
-end;
-
 function TMainWindow.check_input():boolean;
 begin
  Result:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
@@ -81,7 +55,7 @@ end;
 procedure TMainWindow.window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Self.Caption:='7-ZIP SFX STUDIO 2.3.9';
+ Self.Caption:='7-ZIP SFX STUDIO 2.4.5';
  Self.BorderStyle:=bsDialog;
  Self.Font.Name:=Screen.MenuFont.Name;
  Self.Font.Size:=14;
@@ -148,7 +122,7 @@ end;
 
 procedure TMainWindow.OpenSfxButtonClick(Sender: TObject);
 begin
- Self.OpenDialog.FileName:='*.sfx';
+ Self.OpenDialog.FileName:='';
  Self.OpenDialog.DefaultExt:='*.sfx';
  Self.OpenDialog.Filter:='A SFX module|*.sfx';
  if Self.OpenDialog.Execute()=True then
@@ -160,7 +134,7 @@ end;
 
 procedure TMainWindow.OpenConfigurationButtonClick(Sender: TObject);
 begin
- Self.OpenDialog.FileName:='*.txt';
+ Self.OpenDialog.FileName:='';
  Self.OpenDialog.DefaultExt:='*.txt';
  Self.OpenDialog.Filter:='A configuration file|*.txt';
  if Self.OpenDialog.Execute()=True then
@@ -172,7 +146,7 @@ end;
 
 procedure TMainWindow.OpenArchiveButtonClick(Sender: TObject);
 begin
- Self.OpenDialog.FileName:='*.7z';
+ Self.OpenDialog.FileName:='';
  Self.OpenDialog.DefaultExt:='*.7z';
  Self.OpenDialog.Filter:='A 7-ZIP archive|*.7z';
  if Self.OpenDialog.Execute()=True then
@@ -188,7 +162,14 @@ begin
  Self.OpenConfigurationButton.Enabled:=False;
  Self.OpenArchiveButton.Enabled:=False;
  Self.CreateButton.Enabled:=False;
- create_sfx(Self.SfxField.Text,Self.ConfigurationField.Text,Self.ArchiveField.Text);
+ if create_sfx(Self.SfxField.Text,Self.ConfigurationField.Text,Self.ArchiveField.Text)=True then
+ begin
+  ShowMessage('A self-extraction archive was successfully created');
+ end
+ else
+ begin
+  ShowMessage('A self-extraction archive creation has failed');
+ end;
  Self.OpenSfxButton.Enabled:=True;
  Self.OpenConfigurationButton.Enabled:=True;
  Self.OpenArchiveButton.Enabled:=True;
