@@ -10,7 +10,7 @@ unit sevenzipsfxstudiocode;
 
 interface
 
-uses Classes, SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, LazFileUtils, ComCtrls, sfxmaker;
+uses Classes, SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, ComCtrls, sfxmaker;
 
 type
 
@@ -55,7 +55,7 @@ end;
 procedure TMainWindow.window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Self.Caption:='7-ZIP SFX STUDIO 2.4.5';
+ Self.Caption:='7-ZIP SFX STUDIO 2.4.6';
  Self.BorderStyle:=bsDialog;
  Self.Font.Name:=Screen.MenuFont.Name;
  Self.Font.Size:=14;

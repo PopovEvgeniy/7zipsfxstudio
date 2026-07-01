@@ -59,10 +59,7 @@ begin
  if configuration<>nil then configuration.Free();
  if archive<>nil then archive.Free();
  if sfx_archive<>nil then sfx_archive.Free();
- if success=False then
- begin
-  if FileExists(target)=True then DeleteFile(target);
- end;
+ if success=False then DeleteFile(target);
  create_sfx:=success;
 end;
 
