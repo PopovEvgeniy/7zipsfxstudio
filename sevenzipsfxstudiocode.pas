@@ -10,7 +10,7 @@ unit sevenzipsfxstudiocode;
 
 interface
 
-uses Classes, SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, ComCtrls, sfxmaker;
+uses Classes, SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls, ComCtrls;
 
 type
 
@@ -47,6 +47,36 @@ var MainWindow: TMainWindow;
 
 implementation
 
+function create_sfx(const module:string;const cfg:string;const source:string):boolean;
+var target:string;
+var success:boolean;
+var sfx,configuration,archive,sfx_archive:TFileStream;
+begin
+ target:=ChangeFileExt(source,'.exe');
+ sfx:=nil;
+ configuration:=nil;
+ archive:=nil;
+ sfx_archive:=nil;
+ success:=True;
+ try
+  sfx:=TFileStream.Create(module,fmOpenRead);
+  configuration:=TFileStream.Create(cfg,fmOpenRead);
+  archive:=TFileStream.Create(source,fmOpenRead);
+  sfx_archive:=TFileStream.Create(target,fmCreate);
+  sfx_archive.CopyFrom(sfx,0);
+  sfx_archive.CopyFrom(configuration,0);
+  sfx_archive.CopyFrom(archive,0);
+ except
+  success:=False;
+ end;
+ if sfx<>nil then sfx.Free();
+ if configuration<>nil then configuration.Free();
+ if archive<>nil then archive.Free();
+ if sfx_archive<>nil then sfx_archive.Free();
+ if success=False then DeleteFile(target);
+ create_sfx:=success;
+end;
+
 function TMainWindow.check_input():boolean;
 begin
  Result:=(Self.SfxField.Text<>'') and (Self.ConfigurationField.Text<>'') and (Self.ArchiveField.Text<>'');
@@ -55,7 +85,7 @@ end;
 procedure TMainWindow.window_setup();
 begin
  Application.Title:='7-ZIP SFX STUDIO';
- Self.Caption:='7-ZIP SFX STUDIO 2.4.6';
+ Self.Caption:='7-ZIP SFX STUDIO 2.4.7';
  Self.BorderStyle:=bsDialog;
  Self.Font.Name:=Screen.MenuFont.Name;
  Self.Font.Size:=14;
