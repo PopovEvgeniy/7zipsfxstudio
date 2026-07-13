@@ -1,6 +1,6 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.4.7
+                                  Version 2.5.1
 
                          This software was made by Popov Evgeniy Alekseyevich
 
@@ -12,6 +12,7 @@ Windows Vista or higher for 64-bit systems.
 The program description.
 
 This program lets you convert a 7-Zip archive to a self-extracting archive.
+This process may take a long time. Please be patient.
 
 License.
 
@@ -54,3 +55,6 @@ Version history.
 2.4.4: The user interface has improved.
 2.4.5-2.4.6: The small changes.
 2.4.7: A small bug has been fixed.
+2.4.8-2.4.9: The small changes.
+2.5: The file processing has improved.
+2.5.1: The small changes.
