@@ -1,6 +1,6 @@
                                  7ZIP SFX STUDIO
 
-                                  Version 2.5.1
+                                  Version 2.5.1.1
 
                          This software was made by Popov Evgeniy Alekseyevich
 
@@ -30,7 +30,7 @@ Version history.
 1.2-2.1.3: The stable branch.
 2.1.4: The program was totally rewritten.
 2.1.5: The small changes. Windows 9x support has been dropped.
-2.1.6: A small bug has been fixed.
+2.1.6: The small bug has been fixed.
 2.1.6.0.1: The documentation has been updated.
 2.1.7-2.1.9: The small changes.
 2.2: The source code has been adapted to the new version of Lazarus.
@@ -38,7 +38,7 @@ Version history.
 2.2.2.1: The documentation has been updated.
 2.2.3-2.2.4: The small changes.
 2.2.5-2.2.6: The unused code has been removed.
-2.2.7: The user interface has improved.
+2.2.7: The user interface has been improved.
 2.2.8-2.3.1: The small changes.
 2.3.1.1: The documentation has been updated.
 2.3.2: The small changes.
@@ -47,14 +47,15 @@ Version history.
 2.3.4: The source code was recompiled under Lazarus 4.0 RC3.
 2.3.4.1: The documentation has been updated.
 2.3.5: The small changes.
-2.3.6: The user interface has improved.
+2.3.6: The user interface has been improved.
 2.3.6.1: The documentation has been updated.
 2.3.7-2.3.8: The small changes.
-2.3.9: The user interface has improved.
+2.3.9: The user interface has been improved.
 2.4-2.4.3: The small changes.
-2.4.4: The user interface has improved.
+2.4.4: The user interface has been improved.
 2.4.5-2.4.6: The small changes.
-2.4.7: A small bug has been fixed.
+2.4.7: The small bug has been fixed.
 2.4.8-2.4.9: The small changes.
-2.5: The file processing has improved.
+2.5: The file processing has been improved.
 2.5.1: The small changes.
+2.5.1.1: The documentation has been updated.
